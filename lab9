@@ -1,0 +1,26 @@
+import numpy as np # импортируем библиотеку numpy 
+
+def find_even_occurrences(arr):
+    
+    if not isinstance(arr, np.ndarray): # проверяет является ли 'arr' массивом numpy
+        return None # если нет, возвращаем None
+
+    counts = {} # создает пустой словарь для хранения количества вхождений каждого числа
+    
+    for num in arr: # проходит по каждому числу в массиве 
+        counts[num] = counts.get(num, 0) + 1 # увеличивает счетчик для 'num' в словаре 'counts', если числа 'num' нет в словаре, добавляет его со значением 1.
+
+    even_occurrences = [] # создает пустой список для хранения чисел, которые встречаются четное количество раз
+    for num, count in counts.items(): # проходит по всем парам "число-количество" в словаре 'counts'
+        if count % 2 == 0: # проверяет является ли 'count' четным
+            even_occurrences.append(num) # если 'count' четное, добавляем число 'num' в список 'even_occurrences'
+
+    return np.array(even_occurrences) # преобразовывает список 'even_occurrences' в массив numpy и возвращает его
+
+# тестовый массив
+test_array = np.array([1, 2, 3, 2, 4, 4, 5, 5, 6, 6, 6, 1]) # создаем тестовый массив numpy
+
+# вызываем функцию с тестовым массивом
+result = find_even_occurrences(test_array) # вызываем функцию, передавая тестовый массив и сохраняем результат в переменную result
+ 
+print(result) # выводит результат на экран
